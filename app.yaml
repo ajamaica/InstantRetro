@@ -1,0 +1,23 @@
+application: instantretrom
+version: 1
+runtime: python
+api_version: 1
+handlers:
+
+- url: /favicon\.ico
+  static_files: img/favicon.ico
+  upload: img/favicon.ico
+- url: /css
+  static_dir: css
+- url: /images
+  static_dir: images
+- url: /js
+  static_dir: js
+- url: /uploads
+  static_dir: uploads
+- url: /img
+  static_dir: img
+- url: /controls.html
+  static_dir: controls.html
+- url: .*
+  script: main.py

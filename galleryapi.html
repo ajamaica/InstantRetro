@@ -1,0 +1,5 @@
+{% for f in fotos%}
+	<div class='imagengal box col1'>
+		<a href='/view/{{f.key}}'><img  class='pics-home' width="100px" src='/thumb/{{f.key}}' /></a>
+	</div>
+{% endfor %}

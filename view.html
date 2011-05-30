@@ -1,0 +1,147 @@
+
+<!DOCTYPE HTML> 
+<html lang="es-MX"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>InstantRetro - Create awesome vintage Images Online</title> 
+    <link rel="stylesheet" href="/css/style.css" media="all" /> 
+    <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.11.custom.css" media="all" /> 
+    <script src="/js/compressed-script.js"></script> 
+    <script src="/js/vintage.js"></script> 
+    <script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script> 
+
+    <script src="/js/script.js"></script> 
+ 
+    <meta name="description" content=" Create awesome vintage Images Online! Try it out now." /> 
+    <meta name="keywords" content="vintage, retro,images" /> 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" /> 
+    <meta name="robots" content="index,follow" /> 
+    <meta http-equiv="content-language" content="en" /> 
+	<meta property="og:title" content="My vintage photo" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.instantretro.com/view/{{key}}" />
+	<meta property="og:image" content="http://www.instantretro.com/upload/{{key}}" />
+	<meta property="og:site_name" content="Instant Retro" />
+	<meta property="fb:admins" content="843485723" />
+	<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo' rel='stylesheet' type='text/css'>
+	<!-- Start of Woopra Code -->
+	<script type="text/javascript">
+	var woo_settings = {idle_timeout:'300000', domain:'instantretro.com'};
+	(function(){
+	var wsc = document.createElement('script');
+	wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+	wsc.type = 'text/javascript';
+	wsc.async = true;
+	var ssc = document.getElementsByTagName('script')[0];
+	ssc.parentNode.insertBefore(wsc, ssc);
+	})();
+	$(function () {
+		$('#imagepol').ready(function(){
+			if (Modernizr.localstorage) {
+				var value=new Array();
+				if(localStorage.getItem("photos_instant")){
+					value= JSON.parse(localStorage.getItem("photos_instant"));
+					var key=$('#imagepol').attr('rel');
+					console.log(value);
+					if($.inArray(key, value)>0){
+						var randomnumber=Math.floor(Math.random()*11)
+						
+						$.get('/js/delete.html?'+randomnumber, function (r) {
+			                $('#myimg').append(r);
+			            });
+					}
+				}
+			}
+		});
+		$('#deleteme').live('click', function (e) {
+			e.preventDefault();
+			r=$('#imagepol').attr('rel');
+			$.post('/delete/', { 'key' :r  }, function(data) {
+				window.location='/';
+			});
+		});
+		
+	});
+	</script>
+	<!-- End of Woopra Code -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head> 
+<body> 
+    <div id="wrap"> 
+        <header class="clearfix"> 
+            <div id="annoucement">Privacy setting is ready.</div>
+            
+               		<img style="margin: 0; padding: 0; margin-top: 10px; float:left;" src="/images/color-stripes.jpg" alt="Color-stripes" />
+					<a href="http://www.instantretro.com/"><h1 style="margin: 0; padding: 0; text-transform: uppercase; font-family: Verdana; letter-spacing: 2px; color: #6e6753; float:left; padding: 0px 6px; font-size: 24px;">Instant Retro</h1></a>
+					<img style="margin: 0; padding: 0; margin-top: 10px; float:left;" src="/images/color-stripes.jpg" alt="Color-stripes" />
+        </header> 
+        <section id="cachy" > 
+           <h1>"This is a very simple web app that let you edit your photos and give them vintage effects."</h1>
+        </section> 
+
+			<div id="menu">
+				<ul><li><a class="gal" href="http://apps.facebook.com/instantretro/">Facebook App</a><span>new</span></li>
+					<li><a class="chrome" href="https://chrome.google.com/webstore/detail/jlahmeejnbkdnjnckboeglpfmjbfmopp">Chrome App</a></li>
+					<li><a  class="gal" href="/gallery/">Gallery <span>new</span></a></li>
+					<li><a  class="about" href="#">About</a></li>
+				</ul>
+			</div>
+			
+        <section> 
+		<div id="imagepol" rel='{{key}}'>
+            <a href="/upload/{{key}}"><img src="/big/{{key}}" /><h2>{{title}}</h2></a>
+			
+		</div>
+		<div id="myimg"></div>
+		<div id="social">
+			<a href="http://www.instantretro.com/" class="addmine"><h2>Create you Own</h2></a>
+			<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="instantretro" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			
+			<a class="tumblr" href="http://www.tumblr.com/share/photo?source={{image}}&caption=Via http%3A//instantretro.com&clickthru={{url}}" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1T.png') top left no-repeat transparent;">Share on Tumblr</a>
+			
+			<span id="stumble"><script src="http://www.stumbleupon.com/hostedbadge.php?s=2"></script></span>
+			<a href="http://www.reddit.com/submit" onclick="window.location = 'http://www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"> <img src="http://www.reddit.com/static/spreddit7.gif" alt="submit to reddit" class="reddit" border="0" /> </a>
+			<div id="facebook">
+			
+			<div id="fb-root2"></div><script src="http://connect.facebook.net/en_US/all.js#appId=123631297715783&amp;xfbml=1"></script><fb:like href="http://www.instantretro.com/view/{{key}}" send="true" width="450" show_faces="false" font=""></fb:like>
+			
+			<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="http://www.instantretro.com/view/{{key}}" num_posts="5" width="600"></fb:comments>
+		</div>
+		</div>
+        </section> 
+			<div id="fotos">
+			<ul id="galery">
+			{% for f in fotos%}
+			{% if f.shared %}
+				<li class='image-{{forloop.counter}}'><a href='/view/{{f.key}}'><img  class='pics-home' src='/thumb/{{f.key}}' /></a></li>
+				{% endif %}
+			{% endfor %}
+			</ul>
+			</div>
+        <footer> 
+        Instant Retro - 2011 using <a href="http://vintagejs.com/">vintage.js</a>
+        </footer> 
+    </div> 
+	<script type="text/javascript" charset="utf-8">
+	  var is_ssl = ("https:" == document.location.protocol);
+	  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+	  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+	<script type="text/javascript" charset="utf-8">
+	  var feedback_widget_options = {};
+
+	  feedback_widget_options.display = "overlay";  
+	  feedback_widget_options.company = "instant_retro";
+	  feedback_widget_options.placement = "left";
+	  feedback_widget_options.color = "#222";
+	  feedback_widget_options.style = "idea";
+
+	  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+	</script>
+</body> 
+</html>

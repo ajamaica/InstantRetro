@@ -1,0 +1,48 @@
+
+<div class="controls"> 
+    <div class="clearfix"> 
+	
+        <ul> 
+			<h2>1. Levels</h2>
+			<li><span>Label</span><div><input type="text" id="label" /></div></li>
+            <li><span>Darken edges</span><div class="vignette-dark slider" id="vignette-dark-slider"></div></li> 
+            <li><span>Lighten center</span><div class="vignette-light slider" id="vignette-light-slider"></div></li> 
+
+            <li><span>Adjust curves</span><a href="#" class="curves switch">on/off</a></li> 
+            <li><span>Screenlayer</span><a href="#" class="screenlayer switch">on/off</a></li> 
+		
+            <li><span>Desaturate</span><div class="slider desaturate" id="desaturate-slider"></div></li> 
+			</ul> 
+				<ul id="efectos">
+					<h2 id="efects2">2. Effects<h2>
+	            <li><span>Roll</span><a href="#" rel='/img/viewfinder_snap2.jpeg' class="switch eff">on/off</a></li> 
+	            <li><span>Sun</span><a href="#" rel='/img/viewfinder_snap.jpeg' class="switch eff">on/off</a></li> 
+	            <li><span>Ttv</span><a href="#" rel='/img/viewfinder_bw.jpg' class="switch eff">on/off</a></li>
+				<li><span>Burned</span><a href="#" rel='/img/viewfinder_snap3.jpeg' class="switch eff">on/off</a></li>
+				<li><span>Lens</span><a href="#" rel='/img/viewfinder_lens.jpeg' class="switch eff">on/off</a></li>
+			</ul>
+        <span id="checkbox"><input type="checkbox" id="checkboxp" value="True" checked="checked" />I would like to share my Picture.</span>
+        <a href="#" id="saveImage" class="btn fright disabled">Save image</a> 
+
+    </div> 
+</div> 
+<script> 
+    $('#desaturate-slider').slider({
+        animate: true,
+        stop: function (event, ui) {
+            updateVintageJS($(this), ui.value);
+        }
+    });
+    $('#vignette-dark-slider').slider({
+        animate: true,
+        stop: function (event, ui) {
+            updateVintageJS($(this), ui.value);
+        }
+    });
+    $('#vignette-light-slider').slider({
+        animate: true,
+        stop: function (event, ui) {
+            updateVintageJS($(this), ui.value);
+        }
+    });
+</script>
