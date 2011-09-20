@@ -1,0 +1,321 @@
+
+<!DOCTYPE HTML> 
+<html lang="es-MX"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>InstantRetro - Create awesome vintage Images Online</title> 
+    <link media="all" type="text/css" rel="stylesheet" href="/css/all.css?fgrg"/>
+    <!--[if lt IE 8]><link type="text/css" rel="stylesheet" href="css/ie.css" /><![endif]-->
+    <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.11.custom.css" media="all" /> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+    
+    <script src="/js/compressed-script.js"></script> 
+    <script src="http://ajax.cdnjs.com/ajax/libs/camanjs/2.2/caman.full.min.js"></script> 
+    <script src="/js/vintage.js"></script>
+    
+    <script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script> 
+    <script src="/js/imgscale.jquery.min.js"></script>
+    <script src="/js/jquery.leanModal.min.js"></script> 
+    <meta name="google-site-verification" content="2hG02kfGMGFIB5LfNeFNL-2WL7ng1M-LXWJbhBTDeeM" />
+    
+    <script src="/js/script.js?sd"></script> 
+    <script type="text/javascript" src="/js/jquery.juitter.system.js"></script>
+	<script type="text/javascript" src="/js/jquery.juitter.js"></script>
+	<script type="text/javascript" src="/js/cufon-yui.js"></script>
+	<script type="text/javascript" src="/js/Savia_Shadow_400.font.js"></script>
+	<script type="text/javascript" src="/js/Sketch_Block_400.font.js"></script>
+	<script type="text/javascript" src="/js/jquery-workarounds.js"></script>
+    <script type="text/javascript" src="/js/jquery.easing.1.3.js"></script>
+            <script type="text/javascript" src="/js/jquery.transform-0.9.3.min.js" ></script>
+
+    
+    
+    
+    
+    <meta name="description" content=" Create awesome vintage Images Online! Try it out now." /> 
+    <meta name="keywords" content="vintage, retro,images" /> 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> 
+    <link rel="alternate" type="application/rss+xml" href="http://blog.instantretro.com/rss">
+    
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" /> 
+    <meta name="robots" content="index,follow" /> 
+    <meta http-equiv="content-language" content="es" /> 
+    {% block facebook %}
+	
+	{% endblock%}
+    
+    <script> 
+    $(function () {
+
+        $('#saveImage').live('click', function (e) {
+            e.preventDefault();
+            var obj = $(this);
+            if (obj.is('.disabled')) {
+                return false;
+            }
+            saveImage('8ca551193510f04d0ae00602dd8b5cdd',$(this));
+        });
+});
+	</script> 
+	<!-- Start of Woopra Code -->
+	<script type="text/javascript">
+	var woo_settings = {idle_timeout:'300000', domain:'instantretro.com'};
+	(function(){
+	var wsc = document.createElement('script');
+	wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+	wsc.type = 'text/javascript';
+	wsc.async = true;
+	var ssc = document.getElementsByTagName('script')[0];
+	ssc.parentNode.insertBefore(wsc, ssc);
+	})();
+	
+
+     
+	$(document).ready(function() {
+	    {% if current_user %}
+          woopraTracker.addVisitorProperty("name", "{{current_user.name}}");
+          woopraTracker.addVisitorProperty("avatar", "https://graph.facebook.com/{{current_user.id}}/picture");
+          woopraTracker.track();
+        {% endif %}
+            $("#message").fadeIn("slow");
+            $("#clickit").leanModal();
+
+        
+    });
+
+    function closeNotice() {
+        $("#message").fadeOut("slow");
+    }
+	</script>
+	<!-- End of Woopra Code -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+</head> 
+<body> 
+    <div id='message' style="display: none;">
+        <a href="#leancont" id="clickit" name="leancont" >We have a winner. Click here for more information.</a>
+        <a href="#" class="close-notify" onclick="closeNotice()">X</a>
+    </div>
+    
+    <div id="wrapper">
+		<div id="header">
+			<div class="header-holder">
+				<div class="header-frame">
+					<strong class="logo"><a href="/">Instant Retro</a></strong>
+            		
+					<ul id="nav">
+						<li class="active"><a href="/" class="cufon-sketch">Home page</a></li>
+						<li><a href="/gallery/" class="cufon-sketch">Gallery</a></li>
+
+								    {% if current_user %}
+								    <li><a href="/profile/" class="cufon-sketch">My Pictures</a></li>
+            						
+                    			        
+            						<li><a href="#" id='out' class="cufon-sketch" >Logout</a></li>
+
+                    				{% else %}
+                    				<li><a href="http://apps.facebook.com/instantretro/" class="cufon-sketch">Facebook app</a></li>
+            						<li><a href="https://chrome.google.com/webstore/detail/jlahmeejnbkdnjnckboeglpfmjbfmopp" class="cufon-sketch">Chrome app</a></li>
+                    				<li><a href="http://www.facebook.com/dialog/oauth/?scope=status_update,photo_upload,video_upload,share_item,publish_stream,user_photos&client_id=192870917425715&redirect_uri=http://www.instantretro.com/&response_type=token" class="cufon-sketch">Login</a> </li>
+
+                    				{% endif %}
+					</ul>
+				    
+					{% if current_user %}
+					<div id="user">
+					  <span id="hello"> <img src="https://graph.facebook.com/{{current_user.id}}/picture?type=square">Hello, {{current_user.name}}</span>
+					</div>
+					{% endif %}
+    				
+				</div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="main-holder">
+			    <section>
+			    {% block gallery %}
+				{% block section %}
+				
+				{% endblock%}
+				</section>
+				<div class="gallery">
+					<div class="gallery-top">
+						<div class="gallery-bottom">
+							<div class="gallery-holder">
+                    			
+                    			{% for f in fotos%}
+                    			
+                    			<div class="picture">
+                    				<a href='/view/{{f.key}}'>
+                    				    <img  width="304" class='pics-home' src='/thumb/{{f.key}}' />
+                    				</a>
+                    			</div>
+                    			{% endfor %}
+                    			
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endblock%}
+			</div>
+		</div>
+		
+		
+		<!-- Footer -->
+
+        <div id="footer">
+        <div class="set-size">
+
+        	<div class="grid-12">
+
+        		<!-- Twitter -->
+
+        		<div class="grid-4 float-left">
+
+        			<!-- Title -->
+
+        			<h3 class="footer-size-30 cufon-standard padding-title-standard">On twitter</h3>
+
+        			<!-- Twitter -->
+
+        			<div id="twitter-updates"></div>
+
+        		</div>
+
+        		<!-- Newsletter and Get social -->
+
+        		<div class="grid-4 float-left">
+
+        		
+
+        			<!-- Get Social -->
+
+        			<div class="top-line">
+
+        				<!-- Title -->
+
+        				<h3 class="footer-size-30 cufon-standard padding-title-standard">Get social</h3>
+
+        				<!-- List -> Get Social -->
+
+        				<ul class="list-get-social">
+
+        					<li><a href="#"><img src="/images/icon-1.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-2.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-3.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-4.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-5.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-6.png" alt="" /></a></li>
+
+        				</ul>
+        				<div id="fb-root" style="background-color:#fff;"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/pages/Instant-Retro/224862474214949" width="300" show_faces="true" border_color="" stream="false" header="false"></fb:like-box>
+
+        			</div>
+
+        		</div>
+
+        		<!-- Pages -->
+
+        		<div class="grid-2 float-left">
+
+        			<!-- Title -->
+
+        			<h3 class="footer-size-30 cufon-standard padding-title-standard">Menu</h3>
+
+        			<!-- List pages -->
+
+        			<ul class="list-footer">
+
+        				<li><a href="/">Home page</a></li>
+        				<li><a href="/about/">About us</a></li>
+        				<li><a href="/gallery/">Portfolio</a></li>
+
+        			</ul>
+
+        		</div>
+
+        		<!-- Categories -->
+
+        		<div class="grid-2 float-left">
+
+        			<!-- Title -->
+
+                    <br />
+                    <br />
+                    <br />
+                    
+        			<!-- List Categories -->
+
+        			<ul class="list-footer">
+
+        				<li><a href="http://apps.facebook.com/instantretro/">Facebook App</a></li>
+        				<li><a href="https://chrome.google.com/webstore/detail/jlahmeejnbkdnjnckboeglpfmjbfmopp">Chrome App</a></li>
+        				<li><a href="http://blog.instantretro.com/">Blog</a></li>
+        			
+
+        			</ul>
+
+        		</div>
+
+        	</div>
+
+        	<p class="clear"></p>
+
+        </div>
+        </div>
+
+        <!-- Bottom -->
+
+        <div id="bottom">
+        <div class="set-size">
+
+
+        	<p class="padding-text-standard standard-footer"> 2011 Instant Retro.</p>
+
+        </div>
+        </div>
+	</div>
+	<div id="fb-root"></div>
+
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({appId: '192870917425715', status: true, cookie: true,
+                 xfbml: true});
+                 {% block fb %}
+                 
+                 {% endblock%}
+                FB.Event.subscribe('edge.create', function(url) {
+                     woopraTracker.pushEvent({name: 'Facebook Like', url: url});
+                });
+                 
+      };
+      $('#out').live('click', function(){
+          FB.logout(function() {  window.location = '/' ; }); return false;
+      });
+     
+      (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+         
+      }());
+    </script>
+    
+
+	<div id="leancont" style="display: none;">
+    <h2>Congratulations to Ayoo Mars</h2>
+    <p>The music producer <strong>Ayoo Mars</strong> from NYC with the awesome <strong>Brownie Starfish form Kodak</strong>. <a href="http://www.instantretro.com/view/ag9zfmluc3RhbnRyZXRyb21yDAsSBEZvdG8Y7N8WDA" >His photo was seen over 4500 times.</a> </p>
+    <p><img src="http://i.imgur.com/3ZJ9Q.jpg" />
+        You can contact him if you are interested at straight2marz@gmail.com he is a Singer,  Songwriter and Producer
+    </p>
+    <center><div id="images"><a href="http://www.instantretro.com/view/ag9zfmluc3RhbnRyZXRyb21yDAsSBEZvdG8Y7N8WDA"><img src="http://www.instantretro.com/upload/ag9zfmluc3RhbnRyZXRyb21yDAsSBEZvdG8Y7N8WDA" alt="" /></a></div></center>
+    <center><div id="q"><p>Questions? Mail us at admin@instantretro.com</p></div></center>
+    
+    </div>
+    <div id="lean_overlay"></div>
+</body> 
+</html>

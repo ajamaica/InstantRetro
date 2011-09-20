@@ -36,20 +36,17 @@ usage of this module might look like this:
 import cgi
 import hashlib
 import time
-import urllib
+import urllib, urllib2
 
 # Find a JSON parser
 try:
-    import json
-    _parse_json = lambda s: json.loads(s)
+    import simplejson as json
 except ImportError:
     try:
-        import simplejson
-        _parse_json = lambda s: simplejson.loads(s)
+        from django.utils import simplejson as json
     except ImportError:
-        # For Google AppEngine
-        from django.utils import simplejson
-        _parse_json = lambda s: simplejson.loads(s)
+        import json
+_parse_json = json.loads
 
 
 class GraphAPI(object):
@@ -123,7 +120,7 @@ class GraphAPI(object):
         extended permissions.
         """
         assert self.access_token, "Write operations require an access token"
-        return self.request(parent_object + "/" + connection_name, post_args=data)
+        self.request(parent_object + "/" + connection_name, post_args=data)
 
     def put_wall_post(self, message, attachment={}, profile_id="me"):
         """Writes a wall post to the given profile's wall.
@@ -141,19 +138,92 @@ class GraphAPI(object):
              "picture": "http://www.example.com/thumbnail.jpg"}
 
         """
-        return self.put_object(profile_id, "feed", message=message, **attachment)
+        self.put_object(profile_id, "feed", message=message, **attachment)
 
     def put_comment(self, object_id, message):
         """Writes the given comment on the given post."""
-        return self.put_object(object_id, "comments", message=message)
+        self.put_object(object_id, "comments", message=message)
 
     def put_like(self, object_id):
         """Likes the given post."""
-        return self.put_object(object_id, "likes")
+        self.put_object(object_id, "likes")
 
     def delete_object(self, id):
         """Deletes the object with the given ID from the graph."""
         self.request(id, post_args={"method": "delete"})
+    
+    def put_album(self, object_id, **kwargs):
+        object_id = object_id or "me"
+        assert self.access_token, "Write operations require an access token"
+        kwargs['access_token'] = self.access_token
+        content_type, body = self._encode_multipart_form(kwargs)
+        req = urllib2.Request("https://graph.facebook.com/%s/albums" % object_id, data=body)
+        req.add_header('Content-Type', content_type)
+        try:
+            data = urllib2.urlopen(req).read()
+        except:
+            #data = e.read()
+            pass # Facebook sends OAuth errors as 400, and urllib2 throws an exception, we want a GraphAPIError
+        try:
+            response = _parse_json(data)
+            if response.get("error"):
+                raise GraphAPIError(response["error"].get("code", 1),
+                                    response["error"]["message"])
+        except ValueError:
+            response = data
+            
+        return response
+    
+    def put_photo(self, album_id=None, **kwargs):
+        """Uploads an image using multipart/form-data
+        album_id=None posts to /me/photos which uses or creates and uses 
+        an album for your application.
+        """
+        object_id = album_id or "me"
+        #it would have been nice to reuse self.request; but multipart is messy in urllib
+        kwargs['access_token'] = self.access_token
+        content_type, body = self._encode_multipart_form(kwargs)
+        req = urllib2.Request("https://graph.facebook.com/%s/photos" % object_id, data=body)
+        req.add_header('Content-Type', content_type)
+        try:
+            data = urllib2.urlopen(req).read()
+        except urllib2.HTTPError, e:
+            data = e.read() # Facebook sends OAuth errors as 400, and urllib2 throws an exception, we want a GraphAPIError
+        try:
+            response = _parse_json(data)
+            if response.get("error"):
+                raise GraphAPIError(response["error"].get("code", 1),
+                                    response["error"]["message"])
+        except ValueError:
+            response = data
+            
+        return response
+
+    # based on: http://code.activestate.com/recipes/146306/
+    def _encode_multipart_form(self, fields):
+        """Fields are a dict of form name-> value
+        For files, value should be a file object file-like objects might work and a fake name will be chosen.
+        Return (content_type, body) ready for httplib.HTTP instance
+        """
+        BOUNDARY = '----------ThIs_Is_tHe_bouNdaRY_$'
+        CRLF = '\r\n'
+        L = []
+        for (key, value) in fields.items():
+            L.append('--' + BOUNDARY)
+            if hasattr(value, 'read') and callable(value.read): 
+                filename = getattr(value,'name','%s.jpg' % key)
+                L.append('Content-Disposition: form-data; name="%s"; filename="%s"' % (key, filename))
+                L.append('Content-Type: image/jpeg')
+                value = value.read()
+            else:
+                L.append('Content-Disposition: form-data; name="%s"' % key)
+            L.append('')
+            L.append(value)
+        L.append('--' + BOUNDARY + '--')
+        L.append('')
+        body = CRLF.join(L)
+        content_type = 'multipart/form-data; boundary=%s' % BOUNDARY
+        return content_type, body
 
     def request(self, path, args=None, post_args=None):
         """Fetches the given path in the Graph API.
@@ -171,19 +241,24 @@ class GraphAPI(object):
         file = urllib.urlopen("https://graph.facebook.com/" + path + "?" +
                               urllib.urlencode(args), post_data)
         try:
-            response = _parse_json(file.read())
+            data = file.read()
         finally:
             file.close()
-        if response.get("error"):
-            raise GraphAPIError(response["error"]["type"],
-                                response["error"]["message"])
+        try:
+            response = _parse_json(data)
+            if response.get("error"):
+                raise GraphAPIError(response["error"].get("code", 1),
+                                    response["error"]["message"])
+        except ValueError:
+            response = data
+            
         return response
 
 
 class GraphAPIError(Exception):
-    def __init__(self, type, message):
+    def __init__(self, code, message):
         Exception.__init__(self, message)
-        self.type = type
+        self.code = code
 
 
 def get_user_from_cookie(cookies, app_id, app_secret):

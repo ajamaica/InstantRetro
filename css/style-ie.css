@@ -1,0 +1,21 @@
+ab.uploadBox_fu .fake {
+display:none !important; 
+margin:10px;
+}
+
+.uploadBox_fu .file {
+position:relative !important;
+}
+
+.uploadBox_fu .fileList {
+width:300px;
+margin:10px 0 !important;
+}
+
+.uploadBox_fu .ib {
+padding:5px;
+}
+
+.uploadBox_fu .real {
+position:relative !important;
+}

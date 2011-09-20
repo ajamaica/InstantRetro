@@ -1,4 +1,4 @@
-application: tuapp
+application: instantretrom
 version: 1
 runtime: python
 api_version: 1
@@ -9,6 +9,10 @@ handlers:
   upload: img/favicon.ico
 - url: /css
   static_dir: css
+- url: /fonts
+  static_dir: fonts
+- url: /data
+  static_dir: data
 - url: /images
   static_dir: images
 - url: /js

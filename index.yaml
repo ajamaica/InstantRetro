@@ -15,6 +15,3 @@ indexes:
   - name: shared
   - name: date
     direction: desc
-
-- kind: Temporal
-  ancestor: false
