@@ -1,0 +1,133 @@
+<!DOCTYPE HTML> 
+<html lang="es-MX" xmlns:fb="http://www.facebook.com/2008/fbml"> 
+<head> 
+    <meta charset="UTF-8" > 
+    <title>InstantRetro - Create awesome vintage Images Online</title> 
+    <link rel="stylesheet" href="/css/style2.css" media="all" /> 
+    <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.11.custom.css" media="all" /> 
+    <script src="/js/compressed-script.js"></script> 
+    <script src="/js/vintage.js"></script>
+    
+    <script src="/js/scriptfb.js"></script> 
+
+    <meta name="description" content=" Create awesome vintage Images Online! Try it out now." /> 
+    <meta name="keywords" content="vintage, retro,images" /> 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" /> 
+    <meta name="robots" content="index,follow" /> 
+    <meta http-equiv="content-language" content="es" /> 
+ 
+    
+    <script> 
+    $(function () {
+        $('#saveImage').live('click', function (e) {
+            e.preventDefault();
+            var obj = $(this);
+            if (obj.is('.disabled')) {
+                return false;
+            }
+            saveImage('8ca551193510f04d0ae00602dd8b5cdd',$(this));
+        });
+});
+	</script> 
+	<!-- Start of Woopra Code -->
+	<script type="text/javascript">
+	var woo_settings = {idle_timeout:'300000', domain:'instantretro.com'};
+	(function(){
+	var wsc = document.createElement('script');
+	wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+	wsc.type = 'text/javascript';
+	wsc.async = true;
+	var ssc = document.getElementsByTagName('script')[0];
+	ssc.parentNode.insertBefore(wsc, ssc);
+	})();
+	</script>
+	<!-- End of Woopra Code -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+  <body>
+
+   
+
+   
+
+
+
+
+	 <div id="wrap"> 
+
+	        <header class="clearfix"> 
+	            <div id="annoucement"></div>
+	               		<img style="margin: 0; padding: 0; margin-top: 10px; float:left;" src="/images/color-stripes.jpg" alt="Color-stripes" />
+						<a href="http://apps.facebook.com/instantretro/" ><h1 style="margin: 0; padding: 0; text-transform: uppercase; font-family: Verdana; letter-spacing: 2px; color: #6e6753; float:left; padding: 0px 6px; font-size: 24px;">Instant Retro</h1></a>
+						<img style="margin: 0; padding: 0; margin-top: 10px; float:left;" src="/images/color-stripes.jpg" alt="Color-stripes" />
+	        </header> 
+	        <section id="cachy" > 
+	           <h1>"This is a very simple web app that let you edit your photos and give them vintage effects."</h1>
+	        </section> 
+			<div id="menu">
+				<ul>
+					<li><a class="chrome" href="https://chrome.google.com/webstore/detail/jlahmeejnbkdnjnckboeglpfmjbfmopp">Chrome App</a></li>
+					<li><a  class="about" href="#">About</a></li>
+				</ul>
+
+			</div>
+			{% if current_user %}
+		 
+	        <section> 
+
+	            <form name="uploadForm" id="uploadForm"  action="/upload/" enctype="multipart/form-data" post="/upload/" medthod="post" id="leadimg" enctype="multipart/form-data"> 
+		<h2>Click the blue square to upload your Photo</h2>
+		<span id="descrp">less than 10 mb</span>
+
+	                <div class="uploadify"> 
+	                    <label for="file_upload">Your image:</label> 
+	                    <input type="file" name="file_upload" id="file_upload" /> 
+	                    <input type="submit" value="Upload now" /> 
+	                </div> 
+	            </form> 
+
+	            <div id="uploadqueue"></div> 
+
+	        </section> 
+		 {% else %}
+		<section id="welcomefb"> 
+			<h2>Please Click the Log in button to access the app</h2>
+			<div id="fablog">
+		    <fb:login-button  perms="status_update,photo_upload,video_upload,create_note,share_item,publish_stream,user_photos"></fb:login-button></div>
+	</section> 
+	 {% endif %}
+			<div id="fotos">
+			<ul id="galery">
+			{% for f in fotos%}
+				<li class='image-{{forloop.counter}}'><a href='http://apps.facebook.com/instantretro/?view={{f.key}}'><img  class='pics-home' src='/thumb/{{f.key}}' /></a></li>
+			{% endfor %}
+			</ul>
+			</div>
+	        <footer> 
+	           Instant Retro - 2011
+	        </footer> 
+	    </div> 
+		<div id="fb-root"></div>
+	
+<script>
+window.fbAsyncInit = function() {
+    FB.init({appId: '192870917425715', status: true, cookie: true,
+             xfbml: true});
+    FB.Event.subscribe('{% if current_user %}auth.logout{% else %}auth.login{% endif %}', function(response) {
+      window.location.reload();
+    });
+  };
+  (function() {
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+  }());
+</script>
+
+  </body>
+</html>

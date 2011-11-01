@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block gallery %}
+<script>
+
+</script>
+		<div id="profile">
+		
+		
+		<h1>My Pictures</h1>
+		<div id="secondary" class="wrap"> 
+		             
+
+		                 {% for f in fotos%}
+							<div  class="box msnry_col1">
+								<a href='/view/{{f.key}}'><img  class='pics-home' width="204" height="auto" src='/thumb/{{f.key}}' /></a>                           
+								<div class="prolifeset"><a class="delete"  href="#" rel="{{f.key}}">Delete</a><span class="privacy" >Public :  <input type="checkbox" name="option2" value="{{f.key}}"  {% if f.shared %}checked{% endif %}> </span></div>
+							</div>
+						 {% endfor %}
+ 		</div> <!-- /#secondary.wrap -->
+		
+	
+		</div>
+
+{% endblock %}

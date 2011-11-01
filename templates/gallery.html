@@ -1,0 +1,568 @@
+{% extends 'base.html' %}
+{% block gallery %}
+<script>
+//masonry
+$(function(){
+  $('#multicol').masonry({
+    columnWidth: 240, 
+    itemSelector: '.article_box',
+    animate: true, 
+    animationOptions: {
+	    duration: 500,
+    	easing: 'linear',
+	    specialEasing: { top: 'linear'},
+	    queue: false
+  }
+  });
+});
+
+$(function(){
+  $('#multicol').masonry({
+    columnWidth: 240, 
+    itemSelector: '.folio_box',
+    animate: false, 
+    animationOptions: {
+	    duration: 500,
+    	easing: 'linear',
+	    specialEasing: { top: 'linear'},
+	    queue: false
+  }
+  });
+});
+//masonry: end
+
+// menu
+
+var menu_timeout_open = false;
+var menu_timeout_close = false;
+
+$(function () {
+
+   var menu_speed_show = 300;
+   var menu_show_timeout = 300;
+
+   $("#nav li").each(function () {
+      var sub_ul = $(this).children("div");
+      
+      if (!sub_ul.length)
+      {
+         $(this).hover(function () {
+            if (menu_timeout_open)
+               clearTimeout(menu_timeout_open);
+         },
+         function () {
+         });
+         return;
+      }
+      
+      prev_left = 172;
+      
+      var new_left = parseInt( prev_left ) - 10;
+      var init_left = new_left+20;
+
+      if ($.browser.msie)
+      {
+         sub_ul.css({
+            display: 'none'
+         });
+      }
+      else
+      {
+         sub_ul.css({
+            display: 'block',
+            opacity: 0,
+         });
+      }
+      
+      $(this).hover(function () {
+         if (menu_timeout_open)
+            clearTimeout(menu_timeout_open);
+         
+         menu_timeout_open = setTimeout(function () {
+            sub_ul.find("div").hide();
+            if ($.browser.msie)
+            {
+               sub_ul.show();
+            }
+            else
+            {
+               sub_ul.css({
+                  display: 'block',
+                  opacity: 0,
+                  left: init_left
+               }).animate({
+                  opacity: 1,
+                  left: new_left
+               }, {
+                  duration: menu_speed_show,
+                  queue: false,
+                  complete: function () {
+                     if ($.browser.msie) this.style.removeAttribute('filter');
+                  }
+               });
+            }
+         }, menu_show_timeout);
+      },
+      function () {
+         sub_ul.hide();
+      });
+   });
+   
+   $("#nav").hover(function () { },function () {
+      //$("#nav div").hide();
+      if (menu_timeout_open)
+         clearTimeout(menu_timeout_open);
+   });
+   
+   $("#nav div").each(function () {
+      var tout_hide = false;
+      var d = $(this);
+      d.hover(function () {
+         if (tout_hide)
+            clearTimeout(tout_hide);
+      },
+      function () {
+         tout_hide = setTimeout(function () {
+            d.hide();
+         }, 500);
+      });
+   });
+
+});
+
+// end menu
+
+
+// flickr animations
+$(function () {
+   $(".flickr").parent().hover(function () {
+   },
+   function () {
+      $(".flickr i").animate({
+         opacity: 0
+      }, {
+         duration: 300,
+         queue: false
+      });
+   });
+   $(".flickr i").hover(function () {
+      $(this).animate({
+         opacity: 0
+      }, {
+         duration: 300,
+         queue: false
+      });      
+      $(".flickr i").not( $(this) ).animate({
+         opacity: 0.4
+      }, {
+         duration: 300,
+         queue: false
+      });
+   }, function () {
+      
+   });
+});
+// end flickr animations
+
+// go up arrow
+$(function () {
+   $(".go_up").click(function () {
+      $("html:not(:animated)"+( ! $.browser.opera ? ",body:not(:animated)" : "")).animate({scrollTop: 0}, 500);
+      return false;
+   });
+});
+// end go up arrow
+
+// form validation
+function update_form_validation() {
+   $("[placeholder]").each(function () {
+      $(this).val( $(this).val().replace( $(this).attr("placeholder"), '' ) );
+      $(this).unbind().placeholder();
+   });
+   $("form .go_button, form .do_add_comment").unbind().click(function () {
+   
+      $(this).parents("form").find("input, textarea").each(function () {
+         $(this).val( $(this).val().replace( $(this).attr("placeholder"), '' ) ).unbind().placeholder();
+      });
+      $(".formError").remove();
+      
+      var e=$(this).parents("form");
+      e.find("input, textarea").each(function () {
+         $(this).unbind();
+         $(this).val( $(this).val().replace( $(this).attr("placeholder"), "" ) );
+      });
+      if (!e.attr("valed")) e.validationEngine();
+      e.attr("valed", "1");
+      e.submit(); 
+      e.find("input, textarea").each(function () {
+         $(this).placeholder();
+      });      
+      return false;
+   });
+   $("form .do_clear").unbind().click(function (e) {
+      $(this).parents("form").find("input, textarea").each(function () {
+         $(this).val("").unbind().placeholder();
+      });
+      $(".formError").remove();
+      
+      if ($(this).attr("remove") && !$(this).parents("#form_prev_holder").length) 
+      {
+         move_form_to( $("#form_prev_holder") );
+         $("#form_holder .do_clear").removeAttr('remove');
+      }
+      
+      return false;
+   });
+}
+$(update_form_validation);
+// end form validation
+
+// comments form
+function move_form_to(ee)
+{
+      var e = $("#form_holder").html();
+      var tt = $("#form_holder .header").text();
+      
+      var to_slide_up = ($(".comment_bg #form_holder").length ? $("#form_holder") : $(".share_com"));
+      
+      to_slide_up.slideUp(500, function () {
+         $("#form_holder").remove();
+         
+         ee.append('<div id="form_holder">'+e+'</div>');
+         $("#form_holder .header").html(tt);
+         $("#form_holder [valed]").removeAttr('valed');
+         $("#form_holder .do_clear").attr('remove', 1);
+         
+         Cufon('#form_holder .header', {
+	         fontWeight: 'bold',
+	         color: '-linear-gradient(#f5f2eb, 0.5=#f5f2eb, 0.8=#acaaa4, #acaaa4)', textShadow: '-1px -1px #000'
+         });
+         
+         $(".formError").remove();
+         
+         $("#form_holder").hide();
+         
+         to_slide_up = ($(".comment_bg #form_holder").length ? $("#form_holder") : $(".share_com"));
+         if (to_slide_up.hasClass('share_com')) $("#form_holder").show();
+         
+         to_slide_up.slideDown(500);
+         
+         if (ee.attr("id") != "form_prev_holder")
+         {
+            $("#comment_parent").val( ee.parent().attr("id").replace('comment-', '') );
+         }
+         else
+         {
+            $("#comment_parent").val("0");
+         }
+         
+         update_form_validation();
+      });
+}
+$(function () {
+   $(".comment .comments").click(function () {
+      move_form_to( $(this).parent().parent() );
+      return false;
+   });
+});
+// end comments form
+
+// albums
+
+var folio_caption_fade_speed = 300;
+var folio_mask_fade_slidedown_speed = 300;
+var folio_desc_fade_speed = 300;
+
+var folio_photos_bg_fade_speed = 1000;
+var folio_photos_gal_fade_speed = 500;
+
+var prev_scroll_top = 0;
+
+function update_photos_events()
+{
+   if (menu_timeout_open)
+      clearTimeout(menu_timeout_open);
+
+
+   $("#nav div").hide();
+
+   $(".big_gallery", current_album).show().css('visibility', 'hidden');
+	if (1) $('.multipics', current_album).masonry({
+	    columnWidth: 240, 
+    	 itemSelector: '.go_pic',
+	    animate: false
+	});
+	$(".big_gallery", current_album).css('visibility', 'visible').hide();
+	
+	if ( $.browser.opera || $.browser.msie && $.browser.version < 8 ) {
+			$('#bg').css({
+			'display': 'none'
+		});
+	}
+	
+   Cufon('.big_gallery h1', {
+      fontWeight: 'bold',
+      color: '-linear-gradient(#f5f2eb, 0.3=#f5f2eb, #a6a39d)', textShadow: '0 -2px #000'
+   }); 
+   Cufon('.go_back', {
+      fontWeight: 'bold',
+      color: '-linear-gradient(#473e2b, 0.4=#473e2b, #1c1a19)', textShadow: '0 1px #fff'
+   });
+  
+   $(".big_gallery .go_back").unbind().click(function () {
+     //$(window).scrollTop(prev_scroll_top);
+     
+      if ($.browser.opera)
+         $(document).unbind('mousewheel');
+     
+     
+     $(".big_gallery").fadeOut(folio_photos_gal_fade_speed, function () {
+        $(".big_gallery_bg").fadeOut(folio_photos_bg_fade_speed, function () {
+            $("html:not(:animated)"+( ! $.browser.opera ? ",body:not(:animated)" : "")).animate({scrollTop: prev_scroll_top}, 500, function () {
+               $('#bg').css({
+                  'height': 'auto',
+                  'overflow': 'visible'
+               });
+               if ( $.browser.opera || $.browser.msie && $.browser.version < 8 ) {
+                     $('#bg').css({
+                     'display': 'block'
+                  });
+               }
+            });
+        });
+     });
+     return false;
+   });
+   
+   if (!$.browser.msie)
+   {
+      
+      $(".multipics a i").css({
+         display: 'block',
+         opacity: 0
+      });
+      
+      $(".multipics a").hover(function () {
+         $("i", this).animate({
+            opacity: 1
+         }, {
+            duration: 500,
+            queue: false
+         });
+      },
+      function () {
+         $("i", this).animate({
+            opacity: 0
+         }, {
+            duration: 500,
+            queue: false
+         });
+      });
+   }
+   	
+   $(".go_pic").each(function () {
+      $(this).attr("rel", "gal[g]").attr("title",  "");
+   });
+   $("a[rel=gal\\[g\\]]").prettyPhoto({
+      theme: 'light_rounded'
+   });
+	
+}
+
+var current_album = false;
+
+$(function () {
+   if ( !$(".folio").length ) return;
+   
+   $(".folio").each(function () {
+      var box = $(this);
+   
+      box.click(function () {
+      
+         var cl = box.parent().attr("class").replace(/^.*for_(post_[0-9]+).*$/, '$1');
+         current_album = $("." + cl);
+         
+         if (!current_album.length)
+            alert("Album not found (."+cl+")");
+      
+         prev_scroll_top = $(window).scrollTop();
+      
+         $(".big_gallery", current_album).hide();
+         
+         $(".big_gallery_bg", current_album).css({
+            display: 'block',
+            opacity: 1,
+            visibility: 'visible',
+            'height': $("#bg").height()+"px",
+            'min-height': $(window).height()+"px",
+      	   //top: $(window).scrollTop()+"px"
+      	   top: 0
+         }).hide().fadeIn(folio_photos_bg_fade_speed, function () {
+            //$(window).scrollTop(0);
+            //$(".big_gallery_bg").css('top', 0);
+            update_photos_events();
+            $("html:not(:animated)"+( ! $.browser.opera ? ",body:not(:animated)" : "")).animate({scrollTop: 0}, 500, function () {
+               //$(".big_gallery_bg", current_album).height( $("#bg").height() );
+               
+               var hh =  $(".big_gallery", current_album).height() + 118;
+               if ( hh < $(window).height() )
+                  hh = $(window).height();
+               
+               $("#bg, .big_gallery_bg").css({
+                  height: hh+"px",
+                  overflow: 'hidden'
+               });
+            });
+            //$("html:not(:animated)"+( ! $.browser.opera ? ",body:not(:animated)" : "")).css({scrollTop: 0});
+            //$(".big_gallery_bg", current_album).height( $(".big_gallery", current_album).height() + 80 );
+            $(".big_gallery", current_album).hide().fadeIn(folio_photos_gal_fade_speed);
+         });
+         return false;
+      });
+      
+      box.hover(function () {
+         if ($.browser.msie)
+         {
+            $(".folio_just_caption", box).css({
+               visibility: 'hidden'
+            });
+            $(".folio_mask", box).css({
+               display: 'block',
+               height: '100%'
+            });
+         }
+         else
+         {
+            $(".folio_just_caption", box).animate({
+               opacity: 0
+            }, {
+               queue: false,
+               duration: folio_caption_fade_speed
+            });
+            var to_height = $(".folio_mask", box).css('height', '100%').height();
+            $(".folio_mask .folio_desc", box).hide();
+            $(".folio_mask", box).css({
+               display: 'block',
+               height: 0,
+               opacity: 0
+            }).animate({
+               height: to_height,
+               opacity: 1
+            }, {
+               queue: false,
+               duration: folio_mask_fade_slidedown_speed,
+               complete: function () {
+                  $(".folio_desc", box).css({
+                     display: 'block',
+                     opacity: 0
+                  }).animate({
+                     opacity: 1
+                  }, {
+                     queue: false,
+                     duration: folio_desc_fade_speed,
+                     complete: function () {
+                        if ($.browser.msie) this.style.removeAttribute('filter');
+                     }
+                  });
+               }
+            });
+         }
+      }, function () {
+         if ($.browser.msie)
+         {
+            $(".folio_just_caption", box).css({
+               visibility: 'visible'
+            });
+            $(".folio_mask", box).css({
+               display: 'none',
+               height: '100%'
+            });
+         }
+         else
+         {
+            $(".folio_mask", box).animate({
+               height: 0,
+               opacity: 0
+            }, {
+               queue: false,
+               duration: folio_mask_fade_slidedown_speed
+            });
+            $(".folio_just_caption", box).animate({
+               opacity: 1
+            }, {
+               queue: false,
+               duration: folio_caption_fade_speed
+            });
+         }
+      });
+   });
+});
+// end albums
+
+// PIE
+$(function () {
+    $('.folio, .folio_mask, .folio_caption, .folio_just_caption').each(function() {
+        if ($.browser.msie) PIE.attach(this);
+    });
+});
+// end PIE
+
+// for test
+$(function () {
+   //$(".folio:first").click();
+});
+</script>
+
+
+		<div id="fotoss">
+		    <div class="grid-12">
+
+            		<!-- Title -->
+        		    <h2>Gallery</h2>
+
+            		<h3 class="standard-size-35 cufon-standard padding-title-standard float-left"><cufon class="cufon cufon-canvas" alt="Show " style="width: 66px; height: 35px; "><canvas width="104" height="37" style="width: 104px; height: 37px; top: -1px; left: -6px; "></canvas><cufontext>Show </cufontext></cufon><cufon class="cufon cufon-canvas" alt="me:" style="width: 37px; height: 35px; "><canvas width="75" height="37" style="width: 75px; height: 37px; top: -1px; left: -6px; "></canvas><cufontext>me:</cufontext></cufon></h3>
+
+            		<!-- Select category -->
+
+            		<ul class="select-category float-left">
+
+            			<li class="active"><a href="#" rel="all" class="cufon-sketch"><cufon class="cufon cufon-canvas" alt="All" style="width: 21px; height: 13px; "><canvas width="30" height="13" style="width: 30px; height: 13px; top: 0px; left: 0px; "></canvas><cufontext>All</cufontext></cufon></a></li>
+            	
+            		</ul>
+
+            		<!-- List projects -->
+
+            		<ul class="grid-12 recent-projects pages-portfolio">
+            		    
+            		    {% for f in fotos%}
+
+            			<li class="grid-4 float-left all webdesign" style="display: block; ">
+
+            				<!-- Image -->
+
+            				<div class="rame-img picture"><div class="rame-top" style="width: 300px; "></div><div class="rame-left" style="height: 151px; "></div><div class="rame-right" style="height: 148px; margin-left: 298px; "></div><div class="rame-bottom" style="width: 303px; margin-top: 151px; "></div><a href='/view/{{f.key}}'><img src='/thumb/{{f.key}}' width="300px" height="161px" alt=""></a></div>
+            			</li>
+            			 {% endfor %}
+						
+            			
+
+            		</ul>
+
+            		<p class="clear"></p>
+
+            	</div>
+		
+		<div id="page_nav">
+			{% if primera %}
+			<a id="next" href="/gallery/{{siguiente}}">Next »</a>
+			{% else %}
+			{% if ultima %}
+			<a  id="back" href="/gallery/{{anterior}}">« Back</a>
+			{% else %}
+			<a id="back" href="/gallery/{{anterior}}">« Back</a><a  id="next" href="/gallery/{{siguiente}}">Next »</a>
+			{% endif %}{% endif %}
+		</div>
+
+		</div>
+
+{% endblock %}

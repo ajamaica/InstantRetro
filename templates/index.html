@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block section %}
+				<div class="main-frame">
+					<div id="content">
+                        
+						<div class="text-box">
+							<h1>Retro Photography Made super Easy</h1>
+							<p>Give it a try</p>						
+                                <form name="uploadForm" id="uploadForm"  action="/upload/" enctype="multipart/form-data" post="/upload/" medthod="post" id="leadimg" enctype="multipart/form-data"> 
+                                    <div class="ribbon_earning_map" id="rimbowindex" style="position:absolute;left:-15px;" title="Earn loyalty points by liking this"></div>
+                                    <div class="uploadify"> 
+                                        <label for="file_upload">Your image:</label> 
+                                        <input type="file" name="file_upload" id="file_upload" /> 
+                                        <input type="submit" value="Upload now" /> 
+                                    </div> 
+                                    {% if current_user %}
+                                    {% else %}
+                                    <span class="or" >- Or -</span>
+                                    <a class="connect-with-facebook-btn"  href="http://www.facebook.com/dialog/oauth/?scope=status_update,photo_upload,video_upload,share_item,publish_stream,user_photos,email&client_id=192870917425715&redirect_uri=http://www.instantretro.com/fb/&response_type=token" id="fblogin" >Login</a>   
+                                    
+                                    <div id="social_login_container"></div>
+
+                                    <script type="text/javascript">
+                                     oneall.api.plugins.social_login.build("social_login_container", {
+                                      'providers' :  [ 'google', 'twitter'], 
+                                      'callback_uri': 'http://www.instantretro.com/new',
+                                      'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_horizontal_small.css'
+                                     });
+                                    </script>                                    
+                                                                     
+                                    
+                                    
+                                    {% endif %}
+                                </form> 
+
+                                <div id="uploadqueue"></div>  
+                                <div id="dumb"></div> 
+        					                             
+						</div>
+					
+						<div class="go-box">
+							
+                            <div class="padding-text-presentation">
+
+                				<!-- Clouds --><div class="presentation-clouds"></div>
+
+                				<div class="rame-type-two"><img src="../images/img1.gif" width="553px" height="457px" alt="" /></div>
+
+                			</div>
+            				
+						</div>
+						
+					</div>	
+				</div>
+				
+			
+
+                
+				
+
+{% endblock%}
+
+{% block fb %}
+  
+ 
+
+
+
+
+
+ {% endblock%}

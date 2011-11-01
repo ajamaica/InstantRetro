@@ -1,89 +1,8 @@
 
 <div class="controls"> 
-    <div id="preset-rendering-wrap"> 
-    				<div id="render-ready"> 
-    					<p>Select a Filter.</p> 
-    				</div> 
-    				<div id="bsrender-in-progress" style="display:none"> 
-    					<p>Wait...</p> 
-    				</div> 
-    			</div> 
+  
 
-    			<table id="preset-table"> 
-    				<tr> 
-    									<td> 
-    						<button id="preset-clarity" class="preset-button fancy-button">Clarity</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-crossProcess" class="preset-button fancy-button">Cross-Process</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-glowingSun" class="preset-button fancy-button">Glowing Sun</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-grungy" class="preset-button fancy-button">Grungy</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-hazyDays" class="preset-button fancy-button">Hazy Days</button> 
-    					</td> 
-    										</tr><tr> 
-
-    														<td> 
-    						<button id="preset-hemingway" class="preset-button fancy-button">Hemingway</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-herMajesty" class="preset-button fancy-button">Her Majesty</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-jarques" class="preset-button fancy-button">Jarques</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-lomo" class="preset-button fancy-button">Lomography</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-love" class="preset-button fancy-button">Love</button> 
-    					</td> 
-    										</tr><tr> 
-
-    														<td> 
-    						<button id="preset-nostalgia" class="preset-button fancy-button">Nostalgia</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-oldBoot" class="preset-button fancy-button">Old Boot</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-orangePeel" class="preset-button fancy-button">Orange Peel</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-pinhole" class="preset-button fancy-button">Pinhole</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-sinCity" class="preset-button fancy-button">Sin City</button> 
-    					</td> 
-    										</tr><tr> 
-
-    														<td> 
-    						<button id="preset-sunrise" class="preset-button fancy-button">Sunrise</button> 
-    					</td> 
-
-    														<td> 
-    						<button id="preset-vintage" class="preset-button fancy-button">Vintage</button> 
-    					</td> 
-
-    													</tr> 
-    			</table>
+    			
     <div class="clearfix"> 
 	
         <ul id="levels"> 
@@ -113,14 +32,17 @@
 			</ul>
 			
 			
-            
-        <span id="checkbox"><input type="checkbox" id="checkboxp" value="True" checked="checked" />Public</span>
-        <a href="#" id="saveImage" class="btn fright">Save image</a>
-        <a href="#" id="reset" class="btn fright">Reset</a> 
-        
+        <div id="actionscheck">
+            <span id="checkbox"><input type="checkbox" id="checkboxp" value="True" checked="checked" />Public</span>
+            <a href="#" id="saveImage" class="btn fright">Save image</a>
+            <a href="#" id="reset" class="btn fright">Reset</a> 
+        </div>
 
     </div> 
+    
 </div> 
+
+
 <script> 
     $('#desaturate-slider').slider({
         animate: true,

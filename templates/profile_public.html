@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block gallery %}
+<script>
+
+</script>
+		<div id="profile_public">
+		
+		
+		<h1>{{profile_user.name}}</h1>
+		<div id="secondary" class="wrap">
+
+
+		                 {% for f in fotos%}
+							<div  class="box msnry_col1">
+								<a href='/view/{{f.key}}'><img  class='pics-home' width="204" height="auto" src='/thumb/{{f.key}}' /></a>
+							</div>
+						 {% endfor %}
+ 		</div> <!-- /#secondary.wrap -->
+	
+		</div>
+
+{% endblock %}

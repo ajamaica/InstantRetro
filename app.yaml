@@ -3,7 +3,8 @@ version: 1
 runtime: python
 api_version: 1
 handlers:
-
+- url: /static
+  static_dir: static
 - url: /favicon\.ico
   static_files: img/favicon.ico
   upload: img/favicon.ico
@@ -19,6 +20,8 @@ handlers:
   static_dir: js
 - url: /uploads
   static_dir: uploads
+- url: /usr
+  static_dir: usr
 - url: /img
   static_dir: img
 - url: /controls.html

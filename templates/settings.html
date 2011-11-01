@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block gallery %}
+<script>
+
+</script>
+		<div id="profile_public">
+		
+		
+		<h1>{{current_user.name}}</h1>
+		<div id="secondary" class="wrap">
+
+
+		                 <form name="uploadForm" id="uploadForm"  action="/settings/" enctype="multipart/form-data" post="/upload/" medthod="post" id="leadimg" enctype="multipart/form-data">
+                                    <div class="ribbon_earning_map" id="rimbowindex" style="position:absolute;left:-15px;" title="Earn loyalty points by liking this"></div>
+                                    <div class="uploadify">
+                                        <input type="hidden" name="key" id="key" value="{{current_user.id}}" />
+                                        <label for="avatar_upload">Your image:</label>
+                                        <input type="file" name="avatar_upload" id="avatar_upload" />
+                                        <input type="submit" value="Upload now" />
+                                    </div>
+                         </form>
+                        <form action="">
+
+                            <input type="text" name="username" id="username" value="{{ current_user.user[0].name }}" />
+                        </form>
+            <div id="uploadqueue"></div>  
+
+ 		</div> <!-- /#secondary.wrap -->
+	
+		</div>
+
+{% endblock %}

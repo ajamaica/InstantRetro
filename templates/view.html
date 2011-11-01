@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block facebook %}
+<meta property="og:image" content="http://www.instantretro.com/upload/{{key}}"/>
+
+{% endblock%}
+{% block section %}
+<div id="contenedor-imagenes">
+
+
+    <div id="imagecentro">
+        <div id="imagepol" rel='{{key}}'>
+            <a href="http://www.instantretro.com/" class="addmine">Create your Own</a>
+            {% if rackspace %}
+            <img src="{{ rackspace }}" id="fotocool"/>
+            {% else %}
+            <img src="/big/{{key}}" id="fotocool"/>
+            {% endif%}
+            <h2 id="titulofoto">{{title}}</h2>
+        </div>
+        <div id="sidebarfoto">
+            <div id="by">
+                {% if foto.owner %}
+                                <span class="card">
+                                    <img src="{{ foto.owner.avatar }}" width="25"/>
+                                    <a href="#" class="profilecard"> {{ foto.owner.name }}</a>
+                                </span>
+                {% endif %}
+            </div>
+
+            <div id="ad">
+
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-8861360808255159";
+                /* Instant Retro */
+                google_ad_slot = "0648477334";
+                google_ad_width = 250;
+                google_ad_height = 250;
+                //-->
+                </script>
+                <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+
+            </div>
+            <div id="stats">{{hint}}</div>
+            <a id="download" href="/upload/{{key}}">Download</a>
+
+            <div id="punchtab_widget"></div>
+            <br/>
+
+            <div id="sideicons">
+                <a href="http://www.instantretro.com/view/{{key}}" class="shareme sharecount">0</a>
+                <div id="likeside">
+                    <fb:like href="http://www.instantretro.com/view/{{key}}" send="false"  data-layout="button_count" data-width="250" width="100" show_faces="false" font=""></fb:like>
+                </div>
+                <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"
+                   data-via="instantretro" data-url="{{url}}" data-lang="es">Tweet</a>
+                <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                <a class="tumblr"
+                   href="http://www.tumblr.com/share/photo?source={{image}}&caption=Via http%3A//instantretro.com&clickthru=http%3A//www.instantretro.com/view/{{key}}"
+                   title="Share on Tumblr"
+                   style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1T.png') top left no-repeat transparent;">Share
+                    on Tumblr</a>
+                <br/>
+
+                <g:plusone size="small"></g:plusone>
+                <script src="http://www.stumbleupon.com/hostedbadge.php?s=1"></script>
+
+
+            </div>
+
+            <div id="short">
+                <label>Short link :<input value={{url}}></label>
+            </div>
+
+
+        </div>
+
+
+        <div id="social">
+            <div id="innerraya">
+                <div id="marco">
+                    <div id="contentshare">
+                        <h2>Comments</h2>
+
+                        <div id="facebook">
+
+
+                            <div id="fb-root"></div>
+                            <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+                            <fb:comments href="http://www.instantretro.com/view/{{key}}" num_posts="3"
+                                         width="600"></fb:comments>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Place this tag after the last plusone tag -->
+<script type="text/javascript">
+    (function() {
+        var po = document.createElement('script');
+        po.type = 'text/javascript';
+        po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(po, s);
+    })();
+</script>
+{% endblock%}

@@ -1,13 +1,11 @@
 /* @override 
-	http://localhost:8083/css/all.css
+	http://www.instantretro.com/css/all.css?v2.7.3
 	http://www.instantretro.com/css/all.css
-	http://localhost:8085/css/all.css
-	http://localhost:8083/css/all.css?sdf
-	http://www.instantretro.com/css/all.css?yyyy
-	http://localhost:8083/css/all.css?yyyy
-	http://localhost:8084/css/all.css?yyyy
-	http://localhost:8085/css/all.css?dfs
-	http://www.instantretro.com/css/all.css?fgrg
+	http://www.instantretro.com/css/all.css?v=4
+	http://www.instantretro.com/css/all.css?v=4.1
+	http://www.instantretro.com/css/all.css?v=4.2
+	http://www.instantretro.com/css/all.css?v=4.3
+	http://www.instantretro.com/css/all.css?v=4.4
 */
 
 @font-face {
@@ -70,6 +68,7 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -108,7 +107,7 @@ body {
 }
 
 #profile, #fotoss {
-    width: 1051px;
+    width: 962px;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 25px;
@@ -130,6 +129,8 @@ a:hover {
 input {
     font: 12px Arial, Helvetica, sans-serif;
     vertical-align: middle;
+	border: 1px solid #dbdad6;
+	height: 22px;
 }
 form, fieldset {
     margin: 0;
@@ -156,7 +157,7 @@ form, fieldset {
     padding: 15px 0 15px 3px !important;
     overflow: hidden;
     width: 1100px;
-    height: 46px;
+    height: 26px;
     margin: 0 auto;
     padding-top: 10px !important;
 }
@@ -164,7 +165,7 @@ form, fieldset {
     margin: 0;
     background: url(../images/logo.gif) no-repeat;
     width: 288px;
-    height: 60px;
+    height: 40px;
     text-indent: -9999px;
     overflow: hidden;
     float: left;
@@ -176,7 +177,7 @@ form, fieldset {
 #nav {
     float: left;
     margin: 0;
-    padding: 13px 0 0 109px;
+    padding: 0px 0 0 109px;
     list-style: none;
 }
 #nav li {
@@ -239,7 +240,7 @@ form, fieldset {
     float: left;
     width: 1059px;
     text-align: center;
-    margin: -82px auto 30px;
+    margin: 0x auto 30px;
     height: 42px;
 }
 
@@ -257,7 +258,7 @@ form, fieldset {
     color: #21343b;
 }
 #main {
-    background: url(../images/bg-main.gif);
+    
     width: 100%;
     min-height: 500px;
 }
@@ -307,7 +308,9 @@ form, fieldset {
     color: #587077;
     text-align: center;
     float: left;
-    padding: 0 99px 90px 0;
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 99px;
 }
 
 .carbonad-image {
@@ -334,13 +337,21 @@ form, fieldset {
 
 #ad {
     cursor: pointer;
-    height: 210px;
-    margin-top: -2px;
+    height: 250px;
+    margin-top: 10px;
     background-color: #fff;
     margin-bottom: 10px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+}
+
+#short label input {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid #e5dfd9;
+	padding-left: 5px;
+	margin-left: 5px;
 }
 #footer iframe{
     background-color: #fff !important;
@@ -363,7 +374,7 @@ div.carbonad {
     position: relative;
     margin-top: 0;
     margin-left: 26px;
-    margin-bottom: 57px;
+    margin-bottom: 29px;
 }
 
 #profile h1 {
@@ -492,7 +503,7 @@ span.delete {
 }
 .gallery-top {
     background: url(../images/bg-gallery-top.gif) repeat-x 50% 0;
-    padding: 36px 0 0;
+    padding: 35px 0 0;
 }
 .gallery-bottom {
     padding: 0 0 44px;
@@ -537,6 +548,10 @@ span.delete {
     margin-bottom: 15px;
 }
 
+#likelike{
+	float: right;
+}
+
 
 .gallery-holder {
     margin: 0 auto;
@@ -548,7 +563,7 @@ span.delete {
 
 
 .theImage {
-    padding: 15px;
+    padding: 15px 15px 15px 14px;
     background: #fff;
     border: 1px solid #c5c5c5;
     -moz-border-radius: 5px;
@@ -558,21 +573,23 @@ span.delete {
     -moz-box-shadow: 0px 0px 15px #ccc;
     box-shadow: 0px 0px 15px #ccc;
     display: block;
-    max-width: 870px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 20px;
+    max-width: 600px;
+	float: left;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
 }
 .controls {
-    width: 667px;
     margin: 0 auto 26px;
-    padding: 10px 0 20px;
-    height: 490px;
+    padding: 10px 0 20px 10px;
     z-index: 9999999999999;
     position
     top: 3px;
     background-color: #f4f3f0;
     border: 1px solid #dbdad6;
+	width: 466px;
+	float: right;
+	clear: right;
 }
 
 div.example-right {
@@ -612,25 +629,24 @@ div.example-right {
     margin-bottom: 8px;
 }
 .controls ul li {
-    clear: both;
     height: 30px;
     line-height: 30px;
     margin-left: auto;
 }
 .controls ul li span {
-    float: left;
     display: block;
-    width: 132px;
     text-align: right;
     color: #666666;
     font-w1eight: 100;
     font-size: 14px;
-    margin-right: 20px;
     text-shadow: #fff 1px 1px 0;
+	width: 96px;
+	float: left;
+	margin-right: 10px;
 }
 
 #checkbox {
-    margin-left: 167px;
+    margin-left: 115px;
     margin-right: 25px;
 }
 
@@ -654,7 +670,7 @@ div.example-right {
 }
 .controls ul li .slider {
     float: left;
-    width: 195px;
+    width: 137px;
     margin-top: 9px;
 }
 
@@ -671,25 +687,10 @@ div.example-right {
     height: auto;
     margin-left: -100px;
 }
-.picture {
-    float: left;
-    padding: 3px;
-    width: 206px;
-    height: 136px;
-    margin-right: 20px;
-    background-color: #fff;
-    border-width: 1px;
-    border-style: solid;
-}
 
 
-.picture img {
-    vertical-align: top;
-}
 
-#main div.main-holder div.gallery div.gallery-top div.gallery-bottom div.gallery-holder div.picture a img.pics-home {
-    border: 3px solid #fff;
-}
+
 #footer {
     overflow: hidden;
     width: 100%;
@@ -896,6 +897,13 @@ THE SOFTWARE.
     box-shadow: rgba(0,0,0,0.1) 0 0 5px;
     -moz-box-shadow: rgba(0,0,0,0.1) 0 0 5px;
     -webkit-box-shadow: rgba(0,0,0,0.1) 0 0 5px;
+	margin-bottom: 15px;
+}
+
+section.edit {
+	width: 1120px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .uploadifyError {
     background-color: #FDE5DD !important;
@@ -922,7 +930,7 @@ THE SOFTWARE.
     margin-left: auto;
     margin-right: auto;
     width: 660px;
-    margin-top: -105px;
+    margin-top: -120px;
     float: left;
 }
 
@@ -952,13 +960,13 @@ canvas#fotocool {
  
 
 #sidebarfoto {
-    float: left;
-    width: 202px;
+    float: right;
+    width: 252px;
 }
 
 #imagecentro {
     margin-left: auto;
-    width: 900px;
+    width: 950px;
     margin-right: auto;
     display: block;
 }
@@ -976,8 +984,7 @@ canvas#fotocool {
 
 
 #user {
-    float: right;
-    width: 130px;
+    width: 136px;
     padding: 5px;
     background-color: #a43620;
     border-radius: 5px;
@@ -985,16 +992,17 @@ canvas#fotocool {
     -webkit-border-radius: 5px;
     color: #fff;
     border: 1px solid #9b311d;
-    margin-top: 4px;
+    margin-top: -40px;
     margin-left: auto;
     margin-right: auto;
-    height: 700px;
+	float: right;
+	height: 32px;
 }
 
 #hello img {
-    width: 40px;
     float: left;
     margin-right: 10px;
+	width: 30px;
 }
 #imagepol img {
     max-width: 600px;
@@ -1042,10 +1050,11 @@ canvas#fotocool {
 
 #social {
     display: block;
-    width: 870px;
+    width: 600px;
     border-style: solid;
-    margin: 25px auto 0;
+    margin: 25px auto 0 20px;
     padding: 8px 8px 0;
+	float: left;
 }
 
 
@@ -1064,14 +1073,52 @@ a.tumblr {
 }
 
 #secondary div.box:hover {
-    -moz-transform: scale(1.2) rotate(0deg);
-    -webkit-transform: scale(1.2) rotate(0deg);
-    -o-transform: scale(1.2) rotate(0deg);
-    -ms-transform: scale(1.2) rotate(0deg);
-    transform: scale(1.2) rotate(0deg);
+    -moz-transform: scale(1.5) rotate(5deg);
+    -webkit-transform: scale(1.5) rotate(5deg);
+    -o-transform:scale(1.5) rotate(5deg);
+
+    -ms-transform: scale(1.5) rotate(5deg);
+    transform: scale(1.5) rotate(5deg);
+
     z-index: 17;
     border-width: 5px;
 }
+
+.avatar{
+	float: left;
+}
+
+#by {
+	text-align: center;
+	margin-top: 10px;
+}
+
+#by span.byspan {
+	float: left;
+	font-weight: bold;
+}
+
+#by span.card {
+	height: 33px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 170px;
+}
+
+#by span.card img {
+	float: left;
+	border: 2px solid #EEE;
+	margin: 3px;
+}
+ span.card a.profilecard {
+	color: #bc4027;
+	font-weight: bold;
+	margin-left: 7px;
+	float: left;
+	padding-top: 7px;
+}
+
 
 
 #innerraya {
@@ -1083,6 +1130,12 @@ a.tumblr {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+	float: left;
+}
+
+#uploadqueue {
+	float: left;
+	display: block;
 }
 
 /* ###################################################### */
@@ -1114,11 +1167,33 @@ a.tumblr {
     background: -moz-linear-gradient(top, #a7c39a, #879d7c);
     width: 105px;
 }
+div.modal-bg { 
+  background:#fff; 
+  position:fixed; 
+  top:0; left:0; 
+  width:100%; 
+  height:100%;
+  z-index:100000000000000;
+	float: left;
+}
+
+#loader {
+	position: absolute;
+	top: 50%;
+	right: 45%;
+	bottom: 50%;
+	left: 45%;
+	text-shadow: #ccc 1px 1px 0;
+	 font: 80px/80px SaviaRegular, Georgia, serif;
+	color: #ce4428;
+}
 
 #preset-table {
-    width: 650px;
-    margin-left: 20px;
+    margin-left: auto;
     margin-bottom: 25px;
+	margin-right: auto;
+	background-color: #f4f3f0;
+	width: 100%;
 }
 
 .fancy-button.active-preset {
@@ -1177,15 +1252,29 @@ img.pics-home {
     height: 130px;
 }
 
+#main div.main-holder div.gallery div.gallery-top div.gallery-bottom div.gallery-holder div.picture {
+	 width: 200px !important;
+	float: left;
+	background-color: #fff;
+	padding-top: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+	margin-right: 28px;
+}
+
+#fotoss div.grid-12 ul.grid-12.recent-projects.pages-portfolio li.grid-4.float-left.all.webdesign div.rame-img.picture a img {
+	width: 299px;
+}
+
 #levels {
     float: left;
-    width: 403px;
     text-align: center;
+	width: 257px;
 }
 
 #efectos {
     float: left;
-    width: 261px;
+	width: 200px;
 }
 
 #efects2 {
@@ -1339,9 +1428,22 @@ strong {
     color: #575757;
 }
 
+div#social_login_container {
+	float: left;
+	padding-left: 75px;
+	margin-top: 9px;
+}
+div#social_login_container iframe{
+	width: 215px !important;
+		height: 40px !important;
+
+}
 
 
-
+.footer{
+	
+	display: none !important;
+}
 
 /* Style for a document */
 
@@ -1604,6 +1706,7 @@ div.column-709 {
 .padding-text-presentation {
     clear: both;
     padding: 50px 0px 0px 10px;
+	margin-top: -34px;
 }
 .padding-text-button-presentation {
     clear: both;
@@ -2175,8 +2278,8 @@ div.padding-text-presentation .presentation-clouds {
     width: 764px;
     height: 468px;
     background: url(/images/presentation-clouds.png) no-repeat;
-    margin: -104px 0px 0px -116px;
     z-index: 20;
+	margin: -60px 0px 0px -116px;
 }
 
 /* Info */
@@ -3096,3 +3199,164 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Colo
     display: inline-block;
     float: left;
 }
+
+div.rame-img.picture {
+	-webkit-animation: lightbox 1s infinite;
+	
+	
+}
+
+.sharecount {
+	-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+-webkit-box-shadow:  inset 0 0 0 1px #fff,inset 0 0 5px 5px #e7e7e7;
+-moz-box-shadow:  inset 0 0 0 1px #fff,inset 0 0 5px 5px #e7e7e7;
+box-shadow: inset 0 0 0 1px #fff,inset 0 0 5px 5px #e7e7e7;
+border:1px solid #ccc;
+width: 38px;
+border:1px solid #aaa;
+display:inline-block;
+text-align: right;
+position:relative;
+overflow:hidden;
+	font-weight: bold;
+	margin-top: 11px;
+	height: 16px;
+	color: #f56e63;
+	font-size: 12px;
+	background: url(/images/btn_bg.png) no-repeat 20px 14px;
+	padding: 10px 20px 8px 8px;
+}
+	
+/* Folio */
+.folio_box{
+	width: 464px;
+	margin: 0 16px 8px 0;
+	overflow: hidden;
+}
+
+.folio_box.col_s{
+	width: 224px;
+	background: url(../images/folio_s_shadow.png) no-repeat center bottom;
+}
+.folio_box.col_m{
+	width: 464px;
+	background: url(../images/folio_m_shadow.png) no-repeat center bottom;
+}
+.folio_box.col_l{
+	width: 704px;
+	background: url(../images/folio_l_shadow.png) no-repeat center bottom;
+}
+
+.folio{
+	position: relative;
+	margin: 2px 2px 10px 2px;
+	-moz-box-shadow: 0 0 2px #000;
+	-webkit-box-shadow: 0 0 2px #000;
+	box-shadow: 0 0 2px #000;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+	.folio a{
+		text-decoration: none;
+	}
+
+.folio_just_caption{
+	position: absolute;
+	visibility: visible;
+	width: 100%;
+	bottom: 0;
+	background: url(../images/folio_pattern.png) no-repeat center 0;
+	-webkit-border-bottom-right-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-radius: 0 0 4px 4px;
+	-pie-watch-ancestors: 1;
+}
+	.folio:hover .folio_just_caption{
+		visibility: hidden;
+	}
+	.folio_just_caption div{
+		background: url(../images/folio_m_lene_b.png) no-repeat center 3px;
+	}
+		.col_s .folio_just_caption div{
+			background: url(../images/folio_s_lene_b.png) no-repeat center 3px;
+		}
+		.folio_just_caption div div{
+			background: url(../images/folio_m_lene_bb.png) no-repeat center bottom;
+			padding: 15px 20px 5px 20px;
+			font-size: 17px;
+			text-align: center;
+		}
+			.col_s .folio_just_caption div div{
+				background: url(../images/folio_s_lene_bb.png) no-repeat center bottom;
+			}
+
+.folio_mask{
+	display: none;
+	background: url(../images/folio_desc.png) repeat;
+	position: absolute;
+	top: 0;
+	border: 0;
+	width: 100%;
+	height: 100%;
+	-moz-border-radius: 4px; /* Firefox */
+	-webkit-border-radius: 4px; /* Safari, Chrome */
+	border-radius: 4px; /* CSS3 */
+	box-shadow: inset 0 0 10px #aba9a5;
+	-moz-box-shadow: inset 0 0 10px #aba9a5;
+	-webkit-box-shadow: inset 0 0 10px #aba9a5;
+	-pie-watch-ancestors: 1;
+	overflow: hidden;
+}
+	.folio:hover .folio_mask{
+		display: block;
+	}
+.folio_caption{
+	position: relative;
+	top: 0;
+	height: auto;
+	background: url(../images/folio_pattern.png) no-repeat center bottom;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-topleft: 4px;
+	border-radius: 4px 4px 0 0;
+	-pie-watch-ancestors: 1;	
+}
+	.folio_caption div{
+		background: url(../images/folio_m_lene_t.png) no-repeat center bottom;
+	}
+		.folio_caption div div{
+			background: none;
+			padding: 6px 20px 14px 20px;
+			font-size: 17px;
+			text-align: center;
+		}
+.folio_desc{
+	background: none;
+	margin: 4px 20px 0 20px; 
+	color: #433d30;
+	text-shadow: 1px 1px 0 #f4f6f2;
+}
+.desc_body{
+	overflow: hidden;
+	clear: both;
+	margin-bottom: 10px;
+}
+	.folio_desc .go_more{
+		float: right;
+	}
+	.folio_desc .ico_link{
+		margin-top: 4px;
+		float: left;
+		color: #433d30;
+		text-shadow: 1px 1px 0 #faf8f2;
+		background-image: url(../images/meta_date.png);
+		background-position: 0 5px;
+	}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -1,0 +1,423 @@
+
+<!DOCTYPE HTML> 
+<html lang="es-MX"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>InstantRetro - Create awesome vintage Images Online</title>
+    <meta name="description" content=" Create awesome vintage Images Online! Try it out now." />
+    <meta name="keywords" content="vintage, retro,images" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/rss+xml" href="http://blog.instantretro.com/rss">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="robots" content="index,follow" />
+    <meta http-equiv="content-language" content="es" />
+    
+    <link media="all" type="text/css" rel="stylesheet" href="/css/all.css?v=4.6"/>
+    <!--[if lt IE 8]>
+    <link type="text/css" rel="stylesheet" href="/css/ie.css"/><![endif]-->
+    <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.11.custom.css" media="all" />
+
+
+    <script src='/js/jquery-1.6.2.min.js'></script>
+    <script src='/js/compressed-script.js'></script>
+    <script src='/js/vintage.js'></script>
+    <script src='/js/jquery.leanModal.min.js'></script>
+    <script src='/js/imgscale.jquery.min.js'></script>
+
+    <script src='/js/jquery.juitter.system.js'></script>
+    <script src='/js/jquery.juitter.js'></script>
+    <script src='/js/cufon-yui.js'></script>
+    <script src='/js/Savia_Shadow_400.font.js'></script>
+    <script src='/js/Sketch_Block_400.font.js'></script>
+    <script src='/js/jquery-workarounds.js'></script>
+    <script src='/js/jquery.easing.1.3.js'></script>
+    <script src='/js/jquery.transform-0.9.3.min.js'></script>
+    <script src='/js/script.js?v=1.4'></script>
+    <script src='/js/sharecount.js'></script>
+    <script src='/js/sharecount.js'></script>
+    <script type="text/javascript" src="/js/jquery.masonry.min.js"></script>
+    
+    
+
+
+
+    <script src="/js/caman.full.min.js"></script>
+
+    <meta name="google-site-verification" content="2hG02kfGMGFIB5LfNeFNL-2WL7ng1M-LXWJbhBTDeeM" />
+    <meta name="google-site-verification" content="3Ks_XWxBX8mjYONnhtw_b7fveNKSRBah7AKGYocBILY" />
+   
+    <script src="http://js.pusherapp.com/1.9/pusher.min.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+     var oneall_js_protocol = (("https:" == document.location.protocol) ? "https" : "http");
+     document.write(unescape("%3Cscript src='" + oneall_js_protocol + "://intantretro.api.oneall.com/socialize/library.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    
+      <script type="text/javascript">
+        // Enable pusher logging - don't include this in production
+        Pusher.log = function(message) {
+          if (window.console && window.console.log) window.console.log(message);
+        };
+
+        // Flash fallback logging - don't include this in production
+        WEB_SOCKET_DEBUG = true;
+
+        var pusher = new Pusher('6395fc6511d3881a1c14');
+        var channel = pusher.subscribe('channel_1');
+        channel.bind('event_1', function(data) {
+          console.log(data);
+        });
+      </script>
+    
+    
+    
+    
+
+    {% block facebook %}
+	
+	{% endblock%}
+    
+    <script> 
+    $(function () {
+
+        $('#saveImage').live('click', function (e) {
+            e.preventDefault();
+            var obj = $(this);
+            if (obj.is('.disabled')) {
+                return false;
+            }
+            saveImage('8ca551193510f04d0ae00602dd8b5cdd',$(this));
+        });
+});
+	</script> 
+	<!-- Start of Woopra Code -->
+	<script type="text/javascript">
+	var woo_settings = {idle_timeout:'300000', domain:'instantretro.com'};
+	(function(){
+	var wsc = document.createElement('script');
+	wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+	wsc.type = 'text/javascript';
+	wsc.async = true;
+	var ssc = document.getElementsByTagName('script')[0];
+	ssc.parentNode.insertBefore(wsc, ssc);
+	})();
+	
+
+     
+	$(document).ready(function() {
+	    {% if current_user %}
+          woopraTracker.addVisitorProperty("name", "{{current_user.name}}");
+          woopraTracker.addVisitorProperty("avatar", "{{current_user.avatar}}");
+          woopraTracker.addVisitorProperty("email", "{{current_user.email}}");
+
+          woopraTracker.track();
+        {% endif %}
+            $("#message").fadeIn("slow");
+
+        
+    });
+
+    function closeNotice() {
+        $("#message").fadeOut("slow");
+    }
+	</script>
+	<!-- End of Woopra Code -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+</head> 
+<body> 
+   
+    
+    <div id="wrapper">
+		<div id="header">
+			<div class="header-holder">
+				<div class="header-frame">
+					<strong class="logo"><a href="/">Instant Retro</a></strong>
+            		
+					<ul id="nav">
+						<li class="active"><a href="/" class="cufon-sketch">Home page</a></li>
+						<li><a href="/gallery/" class="cufon-sketch">Gallery</a></li>
+
+								    {% if current_user %}
+								    <li><a href="/profile/" class="cufon-sketch">My Pictures</a></li>
+            						
+                    			        
+            						<li><a href="#" id='out' class="cufon-sketch" >Logout</a></li>
+
+                    				{% else %}
+                    				<li><a href="http://apps.facebook.com/instantretro/" class="cufon-sketch">Facebook app</a></li>
+            						<li><a href="https://chrome.google.com/webstore/detail/jlahmeejnbkdnjnckboeglpfmjbfmopp" class="cufon-sketch">Chrome app</a></li>
+                    				<li><a href="http://www.facebook.com/dialog/oauth/?scope=status_update,photo_upload,video_upload,share_item,publish_stream,user_photos,email&client_id=151314538301130&redirect_uri=http://www.instantretro.com/fb/&response_type=token" id="fblogin" class="cufon-sketch">Login</a> </li>
+
+                    				{% endif %}
+					</ul>
+				    
+					{% if current_user %}
+					<div id="user">
+                        <img src="{{current_user.avatar}}" class="avatar" width="25" style="float:left;">
+					    <span id="hello"> Hello, {{current_user.name}}</span>
+                        <a href="#" rel="{{current_user.id}}" style="display: none;">View my Profile</a>
+					</div>
+					{% endif %}
+    				
+				</div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="main-holder">
+			    <section>
+			    {% block gallery %}
+				{% block section %}
+				
+				{% endblock%}
+				</section>
+				<div id="cont" style="display:none;">
+				<table id="preset-table"> 
+    				<tr> 
+    									<td> 
+    						<button id="preset-clarity" class="preset-button fancy-button">Clarity</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-crossProcess" class="preset-button fancy-button">Cross-Process</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-glowingSun" class="preset-button fancy-button">Glowing Sun</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-grungy" class="preset-button fancy-button">Grungy</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-hazyDays" class="preset-button fancy-button">Hazy Days</button> 
+    					</td> 
+    					
+    					<td> 
+                            <button id="preset-sunrise" class="preset-button fancy-button">Sunrise</button> 
+                                </td>
+                                <td> 
+<button id="preset-pinhole" class="preset-button fancy-button">Pinhole</button> 
+</td> 
+
+								<td> 
+<button id="preset-sinCity" class="preset-button fancy-button">Sin City</button> 
+</td>
+<td> 
+<button id="preset-nostalgia" class="preset-button fancy-button">Nostalgia</button> 
+</td>
+    										</tr><tr> 
+
+    														<td> 
+    						<button id="preset-hemingway" class="preset-button fancy-button">Hemingway</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-herMajesty" class="preset-button fancy-button">Her Majesty</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-jarques" class="preset-button fancy-button">Jarques</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-lomo" class="preset-button fancy-button">Lomography</button> 
+    					</td> 
+
+    														<td> 
+    						<button id="preset-love" class="preset-button fancy-button">Love</button> 
+    					</td> 
+    					
+    					
+    														<td> 
+    						<button id="preset-vintage" class="preset-button fancy-button">Vintage</button> 
+    					</td>    	<td> 
+<button id="preset-oldBoot" class="preset-button fancy-button">Old Boot</button> 
+</td> 
+
+								<td> 
+<button id="preset-orangePeel" class="preset-button fancy-button">Orange Peel</button> 
+</td>
+    										</tr>
+    			</table>
+				</div>
+				<div class="gallery">
+					<div class="gallery-top">
+						<div class="gallery-bottom">
+							<div class="gallery-holder">
+                    			
+                    			{% for f in fotos%}
+                    			
+                    			<div class="picture">
+                    				<a href='/view/{{f.key}}'>
+                    				    <img  width="304" class='pics-home' src='/thumb/{{f.key}}' />
+                    				</a>
+                    			</div>
+                    			{% endfor %}
+                    			
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endblock%}
+			</div>
+		</div>
+		
+		
+		<!-- Footer -->
+
+        <div id="footer">
+        <div class="set-size">
+
+        	<div class="grid-12">
+
+        		<!-- Twitter -->
+
+        		<div class="grid-4 float-left">
+
+        			<!-- Title -->
+
+        			<h3 class="footer-size-30 cufon-standard padding-title-standard">On twitter</h3>
+
+        			<!-- Twitter -->
+
+        			<div id="twitter-updates"></div>
+
+        		</div>
+
+        		<!-- Newsletter and Get social -->
+
+        		<div class="grid-4 float-left">
+
+        		
+
+        			<!-- Get Social -->
+
+        			<div class="top-line">
+
+        				<!-- Title -->
+
+        				<h3 class="footer-size-30 cufon-standard padding-title-standard">Get social</h3>
+
+        				<!-- List -> Get Social -->
+
+        				<ul class="list-get-social">
+
+        					<li><a href="#"><img src="/images/icon-1.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-2.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-3.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-4.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-5.png" alt="" /></a></li>
+        					<li><a href="#"><img src="/images/icon-6.png" alt="" /></a></li>
+
+        				</ul>
+        				<div id="fb-root" style="background-color:#fff;"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/pages/Instant-Retro/224862474214949" width="300" show_faces="true" border_color="" stream="false" header="false"></fb:like-box>
+
+        			</div>
+
+        		</div>
+
+        		<!-- Pages -->
+
+        		<div class="grid-2 float-left">
+
+        			<!-- Title -->
+
+        			<h3 class="footer-size-30 cufon-standard padding-title-standard">Menu</h3>
+
+        			<!-- List pages -->
+
+        			<ul class="list-footer">
+
+        				<li><a href="/">Home page</a></li>
+        				<li><a href="/about/">About us</a></li>
+        				<li><a href="/gallery/">Portfolio</a></li>
+
+        			</ul>
+
+        		</div>
+
+        		<!-- Categories -->
+
+        		<div class="grid-2 float-left">
+
+        			<!-- Title -->
+
+                    <br />
+                    <br />
+                    <br />
+                    
+        			<!-- List Categories -->
+
+        			<ul class="list-footer">
+
+        				<li><a href="http://apps.facebook.com/instantretro/">Facebook App</a></li>
+        				<li><a href="https://chrome.google.com/webstore/detail/jlahmeejnbkdnjnckboeglpfmjbfmopp">Chrome App</a></li>
+        				<li><a href="http://blog.instantretro.com/">Blog</a></li>
+        			
+
+        			</ul>
+
+        		</div>
+
+        	</div>
+
+        	<p class="clear"></p>
+
+        </div>
+        </div>
+
+        <!-- Bottom -->
+
+        <div id="bottom">
+        <div class="set-size">
+
+
+        	<p class="padding-text-standard standard-footer"> 2011 Instant Retro.</p>
+
+        </div>
+        </div>
+	</div>
+	<div id="fb-root"></div>
+
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({appId: '192870917425715', status: true, cookie: true, xfbml: true});
+                 {% block fb %}
+                 
+                 {% endblock%}
+                FB.Event.subscribe('edge.create', function(url) {
+                     woopraTracker.pushEvent({name: 'Facebook Like', url: url});
+                });
+                 
+      };
+      $('#out').live('click', function(){
+          FB.init({appId: '192870917425715', status: true, cookie: true, xfbml: true});
+          if("{{current_user.source}}" == "facebook"){
+          FB.logout(function() {  window.location = '/logout/' ; }); return false;
+          }else{
+              window.location = '/logout/' ;
+          }
+      });
+     
+      (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+         
+      }());
+     
+    </script>
+    
+    <div class="modal-bg" style="display: none;"><span id="loader">Loading<span id="myspan"></span></span></div>
+
+	
+    <div id="lean_overlay"></div>
+</body> 
+</html>
